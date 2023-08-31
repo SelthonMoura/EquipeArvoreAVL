@@ -5,9 +5,16 @@
 int main(int argc, char *argv[]) {
     No *raiz = NULL;
 
-    raiz = inserir(raiz, 10);
+    raiz = inserir(raiz, 42);
+    raiz = inserir(raiz, 15);
+    raiz = inserir(raiz, 88);
+    raiz = inserir(raiz, 6);
+    raiz = inserir(raiz, 27);
+    raiz = inserir(raiz, 63);
+    raiz = inserir(raiz, 94);
     raiz = inserir(raiz, 20);
-    raiz = inserir(raiz, 30);
+    raiz = inserir(raiz, 57);
+    raiz = inserir(raiz, 71);
 
     printf("Arvore AVL em ordem: ");
     percorrer_em_ordem(raiz);

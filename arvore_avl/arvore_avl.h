@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 // Definição da estrutura do nó da árvore AVL
-typedef struct No 
+typedef struct No
 {
     int chave;
     struct No *esquerda;
@@ -11,7 +11,7 @@ typedef struct No
 } No;
 
 // Função para criar um novo nó
-No *criar_no(int chave) 
+No *criar_no(int chave)
 {
     No *novo_no = (No *)malloc(sizeof(No));
     novo_no->chave = chave;
@@ -23,7 +23,7 @@ No *criar_no(int chave)
 }
 
 // Função para calcular a altura de um nó
-int altura(No *no) 
+int altura(No *no)
 {
 
     if (no == NULL)
@@ -33,7 +33,7 @@ int altura(No *no)
 }
 
 // Função para calcular o fator de balanceamento de um nó
-int fator_balanceamento(No *no) 
+int fator_balanceamento(No *no)
 {
 
     if (no == NULL)
@@ -43,7 +43,7 @@ int fator_balanceamento(No *no)
 }
 
 // Função para atualizar a altura de um nó
-void atualizar_altura(No *no) 
+void atualizar_altura(No *no)
 {
     int altura_esquerda = altura(no->esquerda);
     int altura_direita = altura(no->direita);
@@ -51,7 +51,7 @@ void atualizar_altura(No *no)
 }
 
 // Função para fazer uma rotação simples à esquerda
-No *rotacao_esquerda(No *raiz) 
+No *rotacao_esquerda(No *raiz)
 {
     No *nova_raiz = raiz->direita;
     raiz->direita = nova_raiz->esquerda;
@@ -63,7 +63,7 @@ No *rotacao_esquerda(No *raiz)
 }
 
 // Função para fazer uma rotação simples à direita
-No *rotacao_direita(No *raiz) 
+No *rotacao_direita(No *raiz)
 {
     No *nova_raiz = raiz->esquerda;
     raiz->esquerda = nova_raiz->direita;
@@ -75,13 +75,13 @@ No *rotacao_direita(No *raiz)
 }
 
 // Função para balancear um nó
-No *balancear_no(No *no) 
+No *balancear_no(No *no)
 {
     atualizar_altura(no);
 
-    int fator_balanceamento = fator_balanceamento(no);
+    int fb = fator_balanceamento(no);
 
-    if (fator_balanceamento > 1) 
+    if (fb > 1)
     {
         if (fator_balanceamento(no->esquerda) < 0)
             no->esquerda = rotacao_esquerda(no->esquerda);
@@ -89,7 +89,7 @@ No *balancear_no(No *no)
         return rotacao_direita(no);
     }
 
-    if (fator_balanceamento < -1) 
+    if (fb < -1)
     {
         if (fator_balanceamento(no->direita) > 0)
             no->direita = rotacao_direita(no->direita);
@@ -101,7 +101,7 @@ No *balancear_no(No *no)
 }
 
 // Função para inserir uma chave na árvore AVL
-No *inserir(No *raiz, int chave) 
+No *inserir(No *raiz, int chave)
 {
     if (raiz == NULL)
         return criar_no(chave);
@@ -119,18 +119,18 @@ No *inserir(No *raiz, int chave)
 }
 
 // Função para percorrer a árvore em ordem
-void percorrer_em_ordem(No *raiz) 
+void percorrer_em_ordem(No *raiz)
 {
-    if (raiz != NULL) 
+    if (raiz != NULL)
     {
         percorrer_em_ordem(raiz->esquerda);
-        printf("%d ", raiz->chave);
+        printf("\n\t%d ", raiz->chave);
         percorrer_em_ordem(raiz->direita);
     }
 }
 
 // Função para encontrar o nó com a menor chave
-No *encontra_menor(No *raiz) 
+No *encontra_menor(No *raiz)
 {
     No *atual = raiz;
 
@@ -141,7 +141,7 @@ No *encontra_menor(No *raiz)
 }
 
 // Função para excluir um nó na árvore AVL
-No *excluir(No *raiz, int chave) 
+No *excluir(No *raiz, int chave)
 {
     if (raiz == NULL)
         return raiz;
@@ -153,18 +153,18 @@ No *excluir(No *raiz, int chave)
         raiz->direita = excluir(raiz->direita, chave);
 
     else {
-        if (raiz->esquerda == NULL || raiz->direita == NULL) 
+        if (raiz->esquerda == NULL || raiz->direita == NULL)
         {
             No *temp = raiz->esquerda ? raiz->esquerda : raiz->direita;
 
-            if (temp == NULL) 
+            if (temp == NULL)
             {
                 temp = raiz;
                 raiz = NULL;
 
             } else
                 *raiz = *temp;
-                
+
             free(temp);
         } else {
             No *temp = encontra_menor(raiz->direita);
@@ -180,7 +180,7 @@ No *excluir(No *raiz, int chave)
 }
 
 // Função para buscar uma chave na árvore AVL
-No *buscar(No *raiz, int chave) 
+No *buscar(No *raiz, int chave)
 {
     if (raiz == NULL || raiz->chave == chave)
         return raiz;
