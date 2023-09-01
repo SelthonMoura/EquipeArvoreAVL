@@ -1,3 +1,16 @@
+/* 
+   Curso: Sistemas de Informação
+   Disciplina: Algoritmos e Estruturas de Dados
+   Alunos: Francisco Araujo Loureiro Neto 2215310037
+   Giulia Salles Feitosa 2215310010
+   Juliene Witoria Viana Barros Araujo 2215310040
+   Leonardo Castro Da Silva 2215310016
+   Lucas Almeida Trovao 2215310018
+   Rahilson Dias Costa 2215310025
+   Selthon Noronha De Moura 2215310028
+   Victor Emanuel Barros De Lima 2215310048   
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "arvore_avl.h"
